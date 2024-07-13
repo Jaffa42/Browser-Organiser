@@ -1,3 +1,4 @@
+/* (c) William Taylor 2024 */
 // Evaluates conditions before running
 async function EvaluateFlow(id, flow)
 {

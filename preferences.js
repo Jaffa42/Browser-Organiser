@@ -1,3 +1,5 @@
+/* (c) William Taylor 2024 */
+
 window.addEventListener("load", async () => {
     let flows = (await browser.storage.local.get(["flows"])).flows;
     if (flows !== undefined)

@@ -1,3 +1,5 @@
+/* (c) William Taylor 2024 */
+
 const AVAILABLE_PERMISSIONS =  ["management", "tabs", "tabHide", "notifications"]
 
 // tabs_to_close_count is the number of tabs to close, starting with the earliest.

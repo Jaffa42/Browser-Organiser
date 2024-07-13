@@ -1,3 +1,5 @@
+/* (c) William Taylor 2024 */
+
 // Enable the popup to notify the user if something went wrong
 const ENABLE_ERROR_PROMPT = true
 
