@@ -200,7 +200,7 @@
     /* margin: 0; */
 }
 
-.option-container > label {
+.option-container > label, .option-container > p {
     display: flex;
     flex-direction: column;
     justify-content: center;

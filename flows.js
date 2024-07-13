@@ -208,7 +208,8 @@ class Flow
             "Apply Theme": {
                 icon: "palette",
                 options: [
-                    {type: "multi-choice", title: "Theme", options: "$THEMES"}
+                    {type: "multi-choice", title: "Theme", options: "$THEMES"},
+                    {type: "message", title: "Warning: if misconfigured and there are two or more apply theme actions continually triggering, this could lead to flashing lights."}
                 ],
                 requires_permissions: ["management"]
             },
@@ -640,8 +641,6 @@ class Flow
             // The title for the option
             let option_title = document.createElement("label");
             option_title.htmlFor = `flow-${this.id}-entry-${id}-${option.title}`;
-            option_title.innerText = option.title;
-            option_container.appendChild(option_title);
 
             // The value of the option
             let option_value_elem = document.createElement("input");
@@ -736,6 +735,7 @@ class Flow
                     // Adds the 'more themes' button
                     if (option.options == "$THEMES")
                     {
+                        
                         option_value_elem.classList.add("themes-dropdown")
                         let get_more = document.createElement("option");
                         get_more.classList.add("themes-dropdown-more")
@@ -753,6 +753,7 @@ class Flow
 
                 // Make the title take up the full width if a message
                 case "message": {
+                    option_title = document.createElement("p");
                     option_title.style.width = "100%";
                     option_title.style.textAlign = "justify";
                     break;
@@ -769,6 +770,10 @@ class Flow
             // Sets the ID of the input - needed for the label to focus it on click.
             option_value_elem.id = `flow-${this.id}-entry-${id}-${option.title}`;
             
+            // Adds the label
+            option_title.innerText = option.title;
+            option_container.appendChild(option_title);
+
             // Remove the input if a message
             if (option.type != "message") option_container.appendChild(option_value_elem);
 
