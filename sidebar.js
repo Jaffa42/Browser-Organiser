@@ -12,7 +12,6 @@ async function UpdateButtons()
     {
         for (let flow_id of Object.keys(flows))
         {
-            console.log(flows[flow_id])
             for (let condition_id of Object.keys(flows[flow_id].conditions))
             {
                 if (flows[flow_id].conditions[condition_id].type == "Button")
@@ -36,7 +35,6 @@ async function UpdateButtons()
                 for (let flow of buttons[button_text])
                 {
                     let permissions = await GetPermissions(AVAILABLE_PERMISSIONS);
-                    console.log(permissions)
                     RunFlow(flow, null, true, permissions);
                 }
             }

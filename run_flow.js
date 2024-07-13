@@ -10,8 +10,6 @@ const AVAILABLE_PERMISSIONS =  ["management", "tabs", "tabHide", "notifications"
  */
 function RunFlow(flow, tabs_to_close_count=null, is_first_run=true, permissions=[])
 {
-    console.log("Running", flow, permissions)
-
     var sites_list_include = null;
     var sites_list_exclude = null;
     for (let condition_id of Object.keys(flow.conditions))
@@ -192,7 +190,7 @@ function RunFlow(flow, tabs_to_close_count=null, is_first_run=true, permissions=
                 break;
             }
             case "Reveal Tabs": {
-                if (!permissions.includes("tabs"))
+                if (!permissions.includes("tabs") | !permissions.includes("tabHide"))
                 {
                     console.warn("Cannot run reveal tabs action: permission denied.", permissions);
                     continue;
@@ -284,13 +282,11 @@ function RunFlow(flow, tabs_to_close_count=null, is_first_run=true, permissions=
 
 async function GetPermissions(permissions_to_check)
 {
-    console.log(permissions_to_check)
     let permissions = []
     for (let permission of permissions_to_check)
     {
         let state = await browser.permissions.contains({permissions: [permission]})
         if (state) permissions.push(permission)
     }
-    console.log(permissions)
     return permissions;
 }

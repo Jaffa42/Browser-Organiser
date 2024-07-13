@@ -207,7 +207,7 @@ class Flow
                 icon: "palette",
                 options: [
                     {type: "multi-choice", title: "Theme", options: "$THEMES"},
-                    {type: "message", title: "Warning: if misconfigured and there are two or more apply theme actions continually triggering, this could lead to flashing lights."}
+                    {type: "message", title: "Warning: may cause flashing lights, especially if misconfigured and there are two or more apply theme actions continually triggering."}
                 ],
                 requires_permissions: ["management"]
             },
@@ -234,7 +234,7 @@ class Flow
                 options: [
                     {type: "message", title: "If no 'websites' condition is applied, all hidden tabs will be revealed."}
                 ],
-                requires_permissions: ["tabs"]
+                requires_permissions: ["tabs", "tabHide"]
             },
             "Pin Tabs": {
                 icon: "keep",
@@ -866,9 +866,11 @@ window.addEventListener("load", () => {
         // Retrieve any saved data
         var saved_data = await browser.storage.local.get(["flows"]);
         if (saved_data.flows === undefined) saved_data.flows = {}
-        for (let flow_id_str of Object.keys(flows))
+        for (let flow_id_str of Object.keys(saved_data.flows))
         {
+            console.log(flow_id_str);
             let flow_id = parseInt(flow_id_str);
+            
             if (flow_id >= current_id) current_id = flow_id + 1;
         }
         
@@ -933,7 +935,8 @@ window.addEventListener("load", () => {
                     // Iterates through the options
                     for (let setting of Object.keys(flows[flow].conditions[condition_id].option_elements))
                     {
-                        flow_save_data.conditions[condition_id].settings[setting] = flows[flow].conditions[condition_id].option_elements[setting].type != "checkbox" ? flows[flow].conditions[condition_id].option_elements[setting].value : flows[flow].conditions[condition_id].option_elements[setting].checked;
+                        let save_value = flows[flow].conditions[condition_id].option_elements[setting].type != "checkbox" ? flows[flow].conditions[condition_id].option_elements[setting].value : flows[flow].conditions[condition_id].option_elements[setting].checked;
+                        flow_save_data.conditions[condition_id].settings[setting] = save_value;
                     }
                 }
 

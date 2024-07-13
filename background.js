@@ -1,11 +1,4 @@
 // Evaluates conditions before running
-// If ANY of the triggers match, the flow will run with the relevant specifiers.
-
-// If the tab count trigger causes the flow to run, then:
-//  - If it triggers when the count is ABOVE a number, and the flow results in tabs being removed (closed/hidden), the relevant number will be closed/hidden until the condition no longer matches
-//  - Otherwise, the flow will run as soon as the threshold is crossed, and won't re-run until the conditions no longer match.
-
-// If the schedule condition is used, then the flow will run every cycle, UNLESS the notifications action is sued. In order to avoid spamming the user, this will only run ONCE.
 async function EvaluateFlow(id, flow)
 {
     for (let condition_id of Object.keys(flow.conditions))
@@ -20,7 +13,7 @@ async function EvaluateFlow(id, flow)
                     continue;
                 }
 
-                // Checks teh current number of tabs, and the user specified number
+                // Checks the current number of tabs, and the user specified number
                 let count = (await browser.tabs.query({hidden: false})).length;
                 let threshold = flow.conditions[condition_id].settings["Number of tabs"];
 
@@ -96,6 +89,7 @@ async function EvaluateFlow(id, flow)
                     // Otherwise, records that it has not run.
                     states[`${id}/${condition_id}`] = false;
                 }
+                break;
             }
 
             case "Schedule": {
@@ -132,13 +126,13 @@ async function EvaluateFlow(id, flow)
                         states[`${id}/${condition_id}`] = true;
                         is_first_run = true;
                     }
-                    console.log(permissions, is_first_run)
                     RunFlow(flow, null, is_first_run, permissions);
                 }
                 else
                 {
                     states[`${id}/${condition_id}`] = true;
                 }
+                break;
 
                 
             }
@@ -164,7 +158,6 @@ async function Main()
     setInterval(async () => {
         // Checks some permissions, in case anything has changed
         permissions = await GetPermissions(AVAILABLE_PERMISSIONS);
-        console.log(permissions)
 
         // Gets the flows - has to be run each time in case the user has changed something
         flows = (await browser.storage.local.get(["flows"])).flows;
