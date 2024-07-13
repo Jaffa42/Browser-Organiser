@@ -1,3 +1,3 @@
 # Browser Organiser
 
-* DOCS GO HERE *
+*DOCS GO HERE*
