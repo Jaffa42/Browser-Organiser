@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Preferences</title>
+    <title>Browser Organiser</title>
     <link rel="stylesheet" href="all.css">
     <link rel="stylesheet" href="flows.css">
     <script src="/preferences.js"></script>
 </head>
 <body>
     <h1>Browser Organiser</h1>
-    <h2 id="flows-title">You have 0 flows</h2>
-    <a href="/flows.html"><button>Manage flows</button></a>
+    <h2 id="flows-title">You have no flows</h2>
+    <a href="/flows.html"><button class="top-btn"><div class="material-symbols-outlined" aria-hidden="true">event_list</div> <div>Manage Flows</div></button></a>
     <p>Flows are serieses of actions triggered by various conditions.</p>
     <p>A flow will run when all of its conditions are met, excuding any button conditions. Buttons always run attached flows.</p>
     <br>
-    <h2 id="buttons-title">You have ? buttons</h2>
+    <h2 id="buttons-title">You have no buttons</h2>
     <p>Buttons can be used to run flows with the 'button' condition from the sidebar. One button can run multiple flows: simply use the same name for the button on both.</p>
     <h3 id="your-buttons-title" hidden>Your buttons:</h3>
     <div id="buttons-area">
@@ -34,13 +34,13 @@
 
         <li><b>Storage</b> - We store your flows locally on your device.</li>
     </ul>
-    <p>We only request the permissions that we absolutely need in order to make your flows work.</p>
-
     <br/>
     <h2>Support</h2>
-    <br/>
+    <a href="https://jaffa42.github.io/Browser-Organiser/FAQs" target="_blank"><button class="top-btn"><div class="material-symbols-outlined" aria-hidden="true">help</div> <div>FAQs</div></button></a>
+    <a href="https://github.com/Jaffa42/Browser-Organiser/issues" target="_blank"><button class="top-btn"><div class="material-symbols-outlined" aria-hidden="true">error</div> <div>GitHub issues</div></button></a>
+    <br/><br/>
     <h2>Copyright</h2>
-    <p>This extension © William Taylor 2024</p>
+    <p><a href="https://github.com/Jaffa42/Browser-Organiser/">This addon</a> © William Taylor 2024</p>
     <p><a href="https://fonts.google.com/icons" target="_blank">Material Symbols</a> © Google - <a href="/material-symbols/LICENSE.txt" target="_blank">Apache Licence 2.0</a></p>
     <p><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto</a> © Google - <a href="/roboto/LICENSE.txt" target="_blank">Apache Licence 2.0</a></p>
 

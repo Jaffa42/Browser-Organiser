@@ -181,11 +181,11 @@ class Flow
                 options: [
                     {type: "multi-choice", title: "Apply to:", options: ["These sites", "All sites except these"],},
                     {type: "spacer"},
-                    {type: "textarea", title: "Sites"},
+                    {type: "textarea", title: "Sites", placeholder: "Enter each website on a new line, e.g. \nexample.com\nexample.net"},
                     
                 ],
                 requires_permissions: ["tabs"],
-                category: "Specifiers"
+                category: "Specifiers",
             },
             "Tab Count": {
                 icon: "tab_group",
@@ -202,7 +202,7 @@ class Flow
         }
 
         // Action types
-        // Takes the same format as the conditions
+        // Takes the same format as the conditions, without the category
 
         this.action_types = {
             "Apply Theme": {
@@ -235,7 +235,7 @@ class Flow
                 options: [
                     {type: "message", title: "If no 'websites' condition is applied, all hidden tabs will be revealed."}
                 ],
-                requires_permissions: ["tabs", "tabHide"]
+                requires_permissions: ["tabs"]
             },
             "Pin Tabs": {
                 icon: "keep",
@@ -258,7 +258,7 @@ class Flow
                     {type: "text", title: "Title"},
                     {type: "textarea", title: "Body"},
                 ],
-                requires_permissions: ["notifications"]
+                requires_permissions: ["notifications"],
             }
         }
 
@@ -679,7 +679,8 @@ class Flow
                 case "textarea": {
                     option_value_elem = document.createElement("textarea");
                     if (option_value !== undefined) option_value_elem.value = option_value
-                    option_value_elem.placeholder = "Enter each website on a new line, e.g. \nexample.com\nexample.net"
+                    console.log(option.placeholder)
+                    option_value_elem.placeholder = option.placeholder === undefined ? "Enter text..." : option.placeholder
                     break;
                 }
 

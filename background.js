@@ -1,7 +1,3 @@
-var has_management_permission = null;
-var has_tabs_permission = null;
-var has_tabs_hide_permission = null;
-var has_notifications_permission = null;
 // Evaluates conditions before running
 // If ANY of the triggers match, the flow will run with the relevant specifiers.
 
@@ -18,7 +14,7 @@ async function EvaluateFlow(id, flow)
         {
             case "Tab Count": {
                 // Check if we have permission to use the API
-                if (!has_tabs_permission)
+                if (!permissions.includes("tabs"))
                 {
                     console.warn(`Cannot evaluate tab count condition ${id}/${condition_id} as the tabs permission has not been granted.`); 
                     continue;
@@ -57,11 +53,11 @@ async function EvaluateFlow(id, flow)
                     {
                         if (flow.conditions[condition_id].settings["Trigger when"] == "Tab count is higher")
                         {
-                            RunFlow(flow, tabs_to_close_count=count-threshold);
+                            RunFlow(flow, tabs_to_close_count=count-threshold, true, permissions=permissions);
                         }
                         else
                         {
-                            RunFlow(flow);
+                            RunFlow(flow, null, true, permissions=permissions);
                         }
                         
                     }
@@ -91,7 +87,8 @@ async function EvaluateFlow(id, flow)
                     {
                         // If not, records that it now has & runs.
                         states[`${id}/${condition_id}`] = true;
-                        RunFlow(flow);
+                        
+                        RunFlow(flow, null, true, permissions=permissions);
                     }
                 }
                 else
@@ -121,9 +118,27 @@ async function EvaluateFlow(id, flow)
                 if (now.getHours() < h2) is_before_second_time = true;
                 else if (now.getHours() == h2 && now.getMinutes() <= m2) is_before_second_time = true;
 
+                
+
                 // Checks if both conditions match and, if so, runs the flow
-                // Flow runs continuously until they no longer match, unlike with the Time Of Day.
-                RunFlow(flow);
+                // Flow runs continuously (with the exception of notification actions) until they no longer match, unlike with the Time Of Day.
+                if (is_after_first_time && is_before_second_time) 
+                {
+                    let is_first_run = false;
+                    // Check if this is the first run
+                    // This ensures that if there is a notifications action, it only runs ONCE.
+                    if (states[`${id}/${condition_id}`] !== true)
+                    {
+                        states[`${id}/${condition_id}`] = true;
+                        is_first_run = true;
+                    }
+                    console.log(permissions, is_first_run)
+                    RunFlow(flow, null, is_first_run, permissions);
+                }
+                else
+                {
+                    states[`${id}/${condition_id}`] = true;
+                }
 
                 
             }
@@ -140,6 +155,7 @@ browser.browserAction.onClicked.addListener(() => {
 // Global variables :)
 var states = {}
 var flows = {}
+var permissions = []
 
 // Main function - asynchronious because dealing with JS Promises is annoying.
 async function Main()
@@ -147,10 +163,8 @@ async function Main()
     // Main loop
     setInterval(async () => {
         // Checks some permissions, in case anything has changed
-        has_management_permission = await browser.permissions.contains({permissions: ["management"]})
-        has_tabs_permission = await browser.permissions.contains({permissions: ["tabs"]})
-        has_tabs_hide_permission = await browser.permissions.contains({permissions: ["tabHide"]})
-        has_notifications_permission = await browser.permissions.contains({permissions: ["notifications"]})
+        permissions = await GetPermissions(AVAILABLE_PERMISSIONS);
+        console.log(permissions)
 
         // Gets the flows - has to be run each time in case the user has changed something
         flows = (await browser.storage.local.get(["flows"])).flows;

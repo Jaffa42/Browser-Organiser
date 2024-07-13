@@ -32,10 +32,12 @@ async function UpdateButtons()
         {
             let button = document.createElement("button");
             button.innerText = button_text;
-            button.onclick = () => {
+            button.onclick = async () => {
                 for (let flow of buttons[button_text])
                 {
-                    RunFlow(flow);
+                    let permissions = await GetPermissions(AVAILABLE_PERMISSIONS);
+                    console.log(permissions)
+                    RunFlow(flow, null, true, permissions);
                 }
             }
             document.getElementById("buttons").appendChild(button);

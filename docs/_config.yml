@@ -1,2 +1,12 @@
-name: Browser Organiser
 theme: minima
+title: Browser Organiser
+description: A firefox extension that allows you to automate certain tasks.
+
+header_pages:
+  - index.md
+  - FAQs.md
+  - install.md
+
+author: William (jaffa42)
+
+github_username: jaffa42

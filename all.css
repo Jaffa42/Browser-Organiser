@@ -62,7 +62,9 @@ body {
 
 a[href] {
     text-decoration: none;
-    color: var(--link-colour)
+    color: var(--link-colour);
+    width: fit-content;
+    display: inline-block;
 }
 
 

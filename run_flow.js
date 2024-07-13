@@ -1,7 +1,16 @@
+const AVAILABLE_PERMISSIONS =  ["management", "tabs", "tabHide", "notifications"]
+
 // tabs_to_close_count is the number of tabs to close, starting with the earliest.
-function RunFlow(flow, tabs_to_close_count=null)
+/**
+ * 
+ * @param {*} flow The flow to run
+ * @param {*} tabs_to_close_count The number of tabs to close, if applicable
+ * @param {*} permissions The current permissions
+ * @param {*} is_first_run Whether this is the first run - if false, notifications won't run.
+ */
+function RunFlow(flow, tabs_to_close_count=null, is_first_run=true, permissions=[])
 {
-    console.log("Running", flow)
+    console.log("Running", flow, permissions)
 
     var sites_list_include = null;
     var sites_list_exclude = null;
@@ -32,6 +41,12 @@ function RunFlow(flow, tabs_to_close_count=null)
         {
             
             case "Send Notification": {
+                if (!is_first_run) continue;
+                if (!permissions.includes("notifications"))
+                {
+                    console.warn("Cannot run notifications action: permission denied.", permissions);
+                    continue;
+                }
                 browser.notifications.create({
                     type: "basic",
                     title: action.settings.Title,
@@ -41,10 +56,20 @@ function RunFlow(flow, tabs_to_close_count=null)
                 break;
             }
             case "Apply Theme": {
+                if (!permissions.includes("management"))
+                {
+                    console.warn("Cannot run apply theme action: permission denied.", permissions);
+                    continue;
+                }
                 browser.management.setEnabled(action.settings.Theme, true);
                 break;
             }
             case "Hide Tabs": {
+                if (!permissions.includes("tabHide") | !permissions.includes("tabs"))
+                {
+                    console.warn("Cannot run hide tabs action: permission denied.", permissions);
+                    continue;
+                }
                 var tabs_to_close = []
                 browser.tabs.query({}).then((tabs) => {
                     for (let tab of tabs)
@@ -96,6 +121,11 @@ function RunFlow(flow, tabs_to_close_count=null)
                 break;
             }
             case "Close Tabs": {
+                if (!permissions.includes("tabs"))
+                {
+                    console.warn("Cannot run close tabs action: permission denied.", permissions);
+                    continue;
+                }
                 var tabs_to_close = []
                 browser.tabs.query({}).then((tabs) => {
                     for (let tab of tabs)
@@ -162,6 +192,11 @@ function RunFlow(flow, tabs_to_close_count=null)
                 break;
             }
             case "Reveal Tabs": {
+                if (!permissions.includes("tabs"))
+                {
+                    console.warn("Cannot run reveal tabs action: permission denied.", permissions);
+                    continue;
+                }
                 browser.tabs.query({}).then((tabs) => {
                     for (let tab of tabs)
                     {
@@ -176,7 +211,7 @@ function RunFlow(flow, tabs_to_close_count=null)
                             {
                                 if ((tab.url.includes(url))) tab_match_found = true;
                             }
-                            if (!tab_match_found) browser.tabs.hide(tab.id); 
+                            if (!tab_match_found) browser.tabs.show(tab.id); 
                         }
                         
                     }
@@ -184,6 +219,11 @@ function RunFlow(flow, tabs_to_close_count=null)
                 break;
             }
             case "Pin Tabs": {
+                if (!permissions.includes("tabs"))
+                {
+                    console.warn("Cannot run pin tabs action: permission denied.");
+                    continue;
+                }
                 browser.tabs.query({}).then((tabs) => {
                     for (let tab of tabs)
                     {
@@ -208,6 +248,11 @@ function RunFlow(flow, tabs_to_close_count=null)
             }
 
             case "Unpin Tabs": {
+                if (!permissions.includes("tabs"))
+                {
+                    console.warn("Cannot run Unpin tabs action: permission denied.", permissions);
+                    continue;
+                }
                 browser.tabs.query({}).then((tabs) => {
                     for (let tab of tabs)
                     {
@@ -236,3 +281,16 @@ function RunFlow(flow, tabs_to_close_count=null)
 }
 
 
+
+async function GetPermissions(permissions_to_check)
+{
+    console.log(permissions_to_check)
+    let permissions = []
+    for (let permission of permissions_to_check)
+    {
+        let state = await browser.permissions.contains({permissions: [permission]})
+        if (state) permissions.push(permission)
+    }
+    console.log(permissions)
+    return permissions;
+}
