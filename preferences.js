@@ -28,7 +28,7 @@ window.addEventListener("load", async () => {
         document.getElementById("your-buttons-title").hidden = buttons.length == 0
         if (buttons.length == 0) 
         {
-            document.getElementById("buttons-title").innerText = `You have no buttons.`
+            document.getElementById("buttons-title").innerText = `You have no buttons`
         }
         else if (buttons.length == 1) document.getElementById("buttons-title").innerText = `You have 1 button`
         else document.getElementById("buttons-title").innerText = `You have ${buttons.length} buttons`

@@ -81,7 +81,6 @@ function CreatePopup(title, body, buttons=[{title: "Close"}])
             // Opens the link if it exists
             if (button.link !== undefined)
             {
-                console.log(button.link)
                 let link = document.createElement("a");
                 link.href = button.link;
                 link.target = "_blank";
@@ -130,7 +129,6 @@ class Flow
         {
             this.id = this_id;
         }
-        console.log(this_id);
         this.name = name === null ? "" : name;
         this.conditions = {}
         this.actions = {}
@@ -271,7 +269,6 @@ class Flow
         {
             for (let condition of Object.keys(conditions))
             {
-                console.log(conditions[condition])
                 this.AddCondition(conditions[condition].type, conditions[condition].settings)
 
             }
@@ -281,7 +278,6 @@ class Flow
             {
                 for (let action of Object.keys(actions))
                 {
-                    console.log(actions[action])
                     this.AddAction(actions[action].type, actions[action].settings)
     
                 }
@@ -678,7 +674,6 @@ class Flow
                 case "textarea": {
                     option_value_elem = document.createElement("textarea");
                     if (option_value !== undefined) option_value_elem.value = option_value
-                    console.log(option.placeholder)
                     option_value_elem.placeholder = option.placeholder === undefined ? "Enter text..." : option.placeholder
                     break;
                 }
@@ -869,10 +864,13 @@ window.addEventListener("load", () => {
         }
 
         // Retrieve any saved data
-        var saved_data = await browser.storage.local.get(["flows", "current_id"]);
+        var saved_data = await browser.storage.local.get(["flows"]);
         if (saved_data.flows === undefined) saved_data.flows = {}
-        if (saved_data.current_id === undefined) saved_data.current_id = current_id;
-        current_id = saved_data.current_id;
+        for (let flow_id_str of Object.keys(flows))
+        {
+            let flow_id = parseInt(flow_id_str);
+            if (flow_id >= current_id) current_id = flow_id + 1;
+        }
         
 
         // If no flows, creates one
@@ -885,6 +883,18 @@ window.addEventListener("load", () => {
         {
             for (let flow_id of Object.keys(saved_data.flows))
             {
+                saved_data.flows[flow_id].current_entry_id = 0
+
+                for (let condition_id_str of Object.keys(saved_data.flows[flow_id].conditions))
+                {
+                    let condition_id = parseInt(condition_id_str);
+                    if (condition_id >= saved_data.flows[flow_id].current_entry_id) saved_data.flows[flow_id].current_entry_id = condition_id + 1;
+                }
+                for (let action_id_str of Object.keys(saved_data.flows[flow_id].actions))
+                {
+                    let action_id = parseInt(action_id_str);
+                    if (action_id >= saved_data.flows[flow_id].current_entry_id) saved_data.flows[flow_id].current_entry_id = action_id + 1;
+                }
                 let f = new Flow(saved_data.flows[flow_id].title, saved_data.flows[flow_id].conditions, saved_data.flows[flow_id].actions, flow_id, saved_data.flows[flow_id].current_entry_id)
                 flows[flow_id] = f;
 
@@ -913,7 +923,6 @@ window.addEventListener("load", () => {
                     "conditions": {},
                     "actions": {},
                     "title": flows[flow].name,
-                    "current_entry_id": flows[flow].entry_id
                 }
 
                 // Iterates through the conditions
@@ -948,7 +957,6 @@ window.addEventListener("load", () => {
             // Save the data
             browser.storage.local.set({
                 flows: save_data,
-                current_id: current_id
             }).then(() => {
                 // Success
                 document.getElementById("save-icon").innerText = "check";
