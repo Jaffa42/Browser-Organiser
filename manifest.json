@@ -4,7 +4,9 @@
     "version": "0",
     "description": "An extension which allows you to organise every aspect of your browser.",
     "icons": {
-        "96": "icon.png"
+        "1024": "icon.png",
+        "96": "icon-96px.png",
+        "48": "icon-48px.png"
     },
     
     "permissions": [
