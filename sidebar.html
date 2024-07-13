@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sidebar</title>
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="flows.css">
+    <link rel="stylesheet" href="sidebar.css">
+    <script src="/run_flow.js"></script>
+    <script src="/sidebar.js"></script>
+</head>
+<body>
+    <h1>Browser Organiser</h1>
+    <div id="sidebar-top-buttons">
+        
+        <a href="/preferences.html" target="_blank"><button class="top-btn"><div class="material-symbols-outlined">info</div> <div>About</div></button></a>
+        <a href="/flows.html" target="_blank"><button class="top-btn"><div class="material-symbols-outlined">event_list</div> <div>Flows</div></button></a>
+        <button class="top-btn" id="reload-button"><div class="material-symbols-outlined">refresh</div> <div>Get changes</div></button>
+    </div>
+    <hr>
+    <div id="buttons">
+
+    </div>
+    <div id="welcome" hidden>
+        <h2>Welcome to Browser Organiser!</h2>
+        <p>Here, you can create 'flows', which let you automate various tasks, from changikng your browser's theme to pinning important tabs, and closing old ones.</p>
+        <p>This panel can be accessed at any time by clicking on the extension - this can be found in the extensions menu above (the puzzle icon).</p>
+        <p>Any buttons for the flows you create will appear here. Be sure to click the 'Get Changes' button after making any changes to the flows triggered by these buttons.</p>
+        <p>To get started, select 'Flows' above.</p>
+    </div>
+</body>
+</html>

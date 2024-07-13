@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preferences</title>
+    <link rel="stylesheet" href="all.css">
+    <link rel="stylesheet" href="flows.css">
+    <script src="/preferences.js"></script>
+</head>
+<body>
+    <h1>Browser Organiser</h1>
+    <h2 id="flows-title">You have 0 flows</h2>
+    <a href="/flows.html"><button>Manage flows</button></a>
+    <p>Flows are serieses of actions triggered by various conditions.</p>
+    <p>A flow will run when all of its conditions are met, excuding any button conditions. Buttons always run attached flows.</p>
+    <br>
+    <h2 id="buttons-title">You have ? buttons</h2>
+    <p>Buttons can be used to run flows with the 'button' condition from the sidebar. One button can run multiple flows: simply use the same name for the button on both.</p>
+    <h3 id="your-buttons-title" hidden>Your buttons:</h3>
+    <div id="buttons-area">
+    </div>
+
+
+    </ul>
+    <p id="get-new-themes-message" hidden>You can get new themes at <a href="https://addons.mozilla.org/en-GB/firefox/themes/">addons.mozilla.org</a>, which will appear in this list once installed</p>
+    <br>
+    <h2>About Permissions</h2>
+    <ul>
+        <li><b>Tabs</b> - Allows your flows to read tab info, close and pin/unpin tabs.</li>
+        <li><b>Hide tabs</b> - Allows your flows to hide/show tabs.</li>
+        <li><b>Notifications</b> - Allows your flows to send you notifications.</li>
+        <li><b>Management</b> - Allows your flows to change the theme, and allows the 'Manage flows' menu to list installed themes.</li>
+
+        <li><b>Storage</b> - We store your flows locally on your device.</li>
+    </ul>
+    <p>We only request the permissions that we absolutely need in order to make your flows work.</p>
+
+    <br/>
+    <h2>Support</h2>
+    <br/>
+    <h2>Copyright</h2>
+    <p>This extension © William Taylor 2024</p>
+    <p><a href="https://fonts.google.com/icons" target="_blank">Material Symbols</a> © Google - <a href="/material-symbols/LICENSE.txt" target="_blank">Apache Licence 2.0</a></p>
+    <p><a href="https://fonts.google.com/specimen/Roboto" target="_blank">Roboto</a> © Google - <a href="/roboto/LICENSE.txt" target="_blank">Apache Licence 2.0</a></p>
+
+</body>
+</html>

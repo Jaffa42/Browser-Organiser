@@ -1,0 +1,81 @@
+@font-face {
+    font-family: Roboto;
+    src: url('roboto/Roboto-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'Material Symbols Outlined';
+    font-style: normal;
+    src: url('material-symbols/MaterialSymbolsRounded-VariableFont_FILL,GRAD,opsz,wght.ttf');
+}
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    display: inline-block;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+}
+  
+  
+
+body {
+    font-family: Roboto;
+}
+
+:root {
+    --text-colour: black;
+    --background-colour: #F0F0FF;
+    --btn-normal: #0000002F;
+    --btn-hover: #0000003F;
+    --btn-active: #0000004F;
+    --btn-disabled: #00000017;
+    --btn-text-disabled: #000000AF;
+    --popup-bg: #F7F7FF;
+    --box-colour: #0000000F;
+    --flow-border-colour: #0000007F;
+    --tutorial-overlay: #FFFFFF7F
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --text-colour: white;
+        --background-colour: #121220;
+        --btn-normal: #FFFFFF2F;
+        --btn-hover: #FFFFFF3F;
+        --btn-active: #FFFFFF4F;
+        --btn-disabled: #FFFFFF1F;
+        --btn-text-disabled: #FFFFFFBF;
+        --popup-bg: #282846;
+        --box-colour: #FFFFFF0F;
+        --flow-border-colour: #FFFFFF7F;
+        --link-colour: #00AAFF;
+        --tutorial-overlay: #0000007F
+    }
+    
+}
+
+a[href] {
+    text-decoration: none;
+    color: var(--link-colour)
+}
+
+
+
+
+body {
+    color: var(--text-colour);
+    background-color: var(--background-colour);
+}
+
+.todo {
+    background-color: #FFAA00;
+    color: black;
+    width: fit-content;
+    padding: 10px;
+}

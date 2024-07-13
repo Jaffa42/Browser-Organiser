@@ -1,0 +1,39 @@
+{
+    "manifest_version": 2,
+    "name": "Browser Organiser",
+    "version": "0",
+    "description": "An extension which allows you to organise every aspect of your browser.",
+    "icons": {
+        "96": "icon.png"
+    },
+    
+    "permissions": [
+        "storage"
+    ],
+
+    "options_ui": {
+        "page": "preferences.html",
+        "open_in_tab": true
+    },
+
+    "background": {
+        "scripts": ["run_flow.js", "background.js"]
+    },
+
+    "optional_permissions": [
+        "management",
+        "tabs",
+        "tabHide",
+        "notifications"
+    ],
+
+    "browser_action": {
+
+    },
+
+    "sidebar_action": {
+        "default_panel": "sidebar.html",
+        "default_title": "Browser Organiser",
+        "default_icon": "icon.png"
+    }
+}

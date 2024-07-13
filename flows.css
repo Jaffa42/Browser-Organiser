@@ -1,0 +1,315 @@
+#flows {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    flex-wrap: wrap;
+}
+
+#tutorial-overlay {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--tutorial-overlay);
+    backdrop-filter: blur(2px);
+}
+
+.tutorial-box {
+    position: absolute;
+    width: 300px;
+    /* height: 200px; */
+    left: calc((100% - 320px)/2);
+    background-color: var(--box-colour);
+    padding: 10px;
+    top: 20%;
+    
+}
+
+.top-btns {
+    position: sticky;
+    top: 0;
+    display: flex;
+    padding-top: 7.5px;
+    padding-bottom: 7.5px;
+    margin: 0;
+    background-color: var(--background-colour);
+}
+
+.top-btn {
+
+    display: flex;
+    height: 40px;
+    margin-right: 5px;
+}
+
+.top-btn * {
+    line-height: 20px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
+.top-btn *:last-child {
+    font-size: 15px;
+}
+
+.flow-top-area {
+    display: flex;
+}
+
+
+.blur-bg {
+    position: fixed;
+    left: 0;
+    top: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    backdrop-filter: blur(5px);
+    -wenkit-backdrop-filter: blur(5px);
+}
+
+
+.flow {
+    border: 1px solid var(--flow-border-colour);
+    width: min(415px, calc(100% - 40px));
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    flex-shrink: 0;
+    margin: 10px;
+    height: fit-content;
+    
+}
+
+.flow-title {
+    border: none;
+    /* border-bottom: 1px solid #FFFFFF; */
+    background: none;
+    color: var(--text-color);
+    text-align: center;
+    font-size: 24px;
+    padding: 5px;
+    width: 100%;
+    flex-shrink: 1;
+}
+
+.delete-flow {
+    width: 50px;
+    flex-shrink: 0;
+    margin-left: 2.5px;
+}
+
+.divider {
+    width: 100%;
+}
+
+.sub-menu {
+    background-color: var(--box-colour);
+    padding: 10px;
+    text-align: center;
+}
+
+.item-menu[hidden] {
+    display: none;
+}
+
+.item-menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 100px);
+    row-gap: 5px;
+    column-gap: 5px;
+}
+
+.item {
+    margin: 2.5px;
+    /* width: 80px; */
+    height: 100px;
+    flex-shrink: 1;
+}
+
+.flow-entry-title {
+    cursor: default;
+    /* cursor: move; */
+}
+
+.flow-entry-title-area {
+    /* border: 1px solid red; */
+    display: flex;
+    margin-bottom: 2.5px;
+}
+
+.flow-entry-title-area > * {
+    /* border: 1px solid aqua; */
+    height: 50px;
+    line-height: 50px;
+    padding: 0;
+    margin: 0;
+}
+
+.flow-entry-title-area > *:not(button) {
+    background-color: var(--box-colour);
+}
+.flow-entry-title-area > .material-symbols-outlined {
+    width: 50px;
+    text-align: center;
+    
+}
+
+.flow-entry-title-area > p {
+    text-align: center;
+    flex-grow: 1;
+    margin-left: 2.5px;
+    margin-right: 2.5px;
+    background-color: var(--box-colour);
+    text-overflow: ellipsis;
+    overflow-x: hidden;
+    overflow-y: hidden;
+    text-wrap: nowrap;
+}
+
+.flow-entry {
+    margin-bottom: 10px;
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.flow-entry-settings {
+    padding-top: 5px;
+    background-color: var(--box-colour);
+    display: flex;
+    flex-direction: column;
+}
+
+.flow-entry-settings > h3 {
+    text-align: center;
+    margin: 10px;
+    
+}
+
+.option-container {
+    display: flex;
+    /* outline: 1px solid red; */
+    min-height: 40px;
+}
+
+.option-container > * {
+    line-height: normal;
+    /* outline: 1px solid aqua; */
+    /* margin: 0; */
+}
+
+.option-container > label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    /* flex-grow: 1; */
+    flex-shrink: 5;
+    margin: 5px;
+}
+
+
+
+.option-container > input, .option-container > select {
+    width: calc(50% - 20px);
+    min-width: 100px;
+    
+}
+input, select {
+
+    
+    height: 30px;
+    flex-shrink: 5;
+    margin: 3.5px;
+    margin-top: 5px;
+    padding: 0;
+    text-align: left;
+
+    background: none;
+    color: var(--text-color);
+    border: none;
+    
+
+}
+
+select {
+    border-bottom: 1px solid var(--text-colour);
+}
+
+
+.option-container > textarea {
+    height: 100px;
+    width: 100%;
+    resize: vertical;
+    margin-left: 10px;
+}
+textarea {
+    background-color: transparent;
+    color: var(--text-colour);
+    border: 1px solid var(--text-colour);
+}
+
+.option-container > input[type=time] {
+    min-width: 0;
+    width: min-content;
+}
+input[type=text], input[type=number] {
+    border-bottom: 1px solid var(--text-colour);
+    
+}
+
+input[type=checkbox] {
+    /* margin: 0; */
+    height: 20px;
+    aspect-ratio: 1;
+    min-width: 0;
+    margin-top: 10px;
+    background: none;
+    
+}
+
+.options-spacer {
+    padding: 10px;
+}
+
+.btn-spaced {
+    margin: 2.5px;
+}
+
+button {
+    transition: background-color 100ms;
+    border: none;
+    color: var(--text-colour);
+    background-color: var(--btn-normal);
+    cursor: pointer;
+    padding: 10px;
+}
+
+button:hover {
+    background-color: var(--btn-hover);
+}
+
+button:active {
+    background-color: var(--btn-active);
+}
+
+button:disabled {
+    background-color: var(--btn-disabled) !important;
+    color: var(--btn-text-disabled);
+    cursor: default;
+}
+
+.popup {
+    position: fixed;
+    min-width: 400px;
+    max-width: 40%;
+    color: var(--text-colour);
+    background-color: var(--popup-bg);
+    top: 20%;
+}
+
+.popup-button-row > button {
+    margin-right: 5px;
+}
