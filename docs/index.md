@@ -16,7 +16,7 @@ With Browser Organiser, no code is necessary: simply select what to do and when,
 Browser Organiser has a convenient sidebar, where you can add custom buttons to run your flows.
 
 <img src="screenshots/sidebar.png" width="40%" alt="A screenshot showing the sidebar with the welcome text" title="Sidebar with welcome text" style="display: inline">
-<img src="screenshots/sidebar-2.png" width="40%" alt="A screenshot showing the sidebar with two user-defined buttonns" title="Sidebar with two buttons" style="display: inline">
+<img src="screenshots/sidebar-2.png" width="40%" alt="A screenshot showing the sidebar with two user-defined buttons" title="Sidebar with two buttons" style="display: inline">
 
 ## Light and dark mode
 
