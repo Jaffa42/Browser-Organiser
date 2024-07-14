@@ -1,7 +1,7 @@
 {
     "manifest_version": 2,
     "name": "Browser Organiser",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "An extension which allows you to automate your browser",
     "icons": {
         "1024": "icon.png",
