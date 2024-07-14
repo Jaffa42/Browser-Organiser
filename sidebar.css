@@ -1,5 +1,10 @@
 /* (c) William Taylor 2024 */
-
+/*
+ * This Source Code Form is subject to the terms of the Mozilla Public
+ * License, v. 2.0. If a copy of the MPL was not distributed with this
+ * file, You can obtain one at https://mozilla.org/MPL/2.0/.
+ */
+ 
 body {
     border-left: 1px solid #7F7F7F;
     border-top: 1px solid #7F7F7F;

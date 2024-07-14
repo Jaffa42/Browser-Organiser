@@ -8,7 +8,10 @@ Please see the website linked above for the documentation.
 
 <br/>
 
-Extension by William Taylor 
+Extension (c) William Taylor - Available under [MPL Version 2.0](LICENSE.txt)<br/>
+This Source Code Form is subject to the terms of the Mozilla Public
+  License, v. 2.0. If a copy of the MPL was not distributed with this
+  file, You can obtain one at https://mozilla.org/MPL/2.0/.
 
 [Material symbols](https://fonts.google.com/icons) (c) Google - [Apache License v2.0](/material-symbols/LICENSE.txt) 
 
