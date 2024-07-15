@@ -6,6 +6,8 @@ Browser organiser is a firefox addon which allows you to automate various tasks.
 
 Please see the website linked above for the documentation.
 
+[<img src="docs/get-the-addon-button.svg" width="150px" alt="A button that links to the extension's page on addons.mozilla.org">](https://addons.mozilla.org/en-GB/firefox/addon/browser-organiser/)
+
 <br/>
 
 Extension (c) William Taylor - Available under [MPL Version 2.0](LICENSE.txt)<br/>
