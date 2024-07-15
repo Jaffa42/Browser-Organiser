@@ -4,4 +4,6 @@ title: Install
 permalink: /install
 ---
 
-Browser Organiser will be available for download soon on addons.mozilla.org - currently awaiting review.
+Browser Organiser is available for download on [addons.mozilla.org](https://addons.mozilla.org/en-GB/firefox/addon/browser-organiser/).
+
+[<img src="get-the-addon-button.svg" width="150px" alt="A button that links to the extension's page on addons.mozilla.org">](https://addons.mozilla.org/en-GB/firefox/addon/browser-organiser/)
